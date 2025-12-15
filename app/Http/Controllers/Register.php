@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateNewTPA;
 use Inertia\Inertia;
 
 class Register extends Controller
@@ -12,7 +12,7 @@ class Register extends Controller
         return Inertia::render('Register/newtpa');
     }
 
-    public function storeTpa(Request $request)
+    public function storeTpa(CreateNewTPA $request)
     {
         dd($request->all());
     }

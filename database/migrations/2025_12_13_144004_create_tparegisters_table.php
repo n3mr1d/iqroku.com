@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('whatsapp');
             $table->string('nama_anak');
             $table->string('jenis_kelamin');
-            $table->dateTime('tanggal_lahir');
+            $table->date('tanggal_lahir');
             $table->boolean('tpalama');
             $table->string('kelas_tpa');
             $table->string('saran_waktutpa');
