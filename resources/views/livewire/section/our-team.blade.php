@@ -11,7 +11,7 @@
 
             </div>
 
-            <div class="relative min-h-[600px]">
+            <div data-aos="fade-up" class="relative min-h-[600px]">
 
                 <div wire:loading.remove wire:target="previousPage,nextPage,gotoPage"
                     class="grid gap-8 lg:gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-8 team-grid">
@@ -21,7 +21,7 @@
                         <div class="text-center text-gray-500">
                             <!-- Avatar with hover effect -->
                             <div
-                                class="relative mx-auto mb-4 w-36 h-36 overflow-hidden rounded-full transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
+                                class="relative shadow-xl/59 mx-auto mb-4 w-36 h-36 overflow-hidden rounded-full transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
                                 <img class="w-full h-full object-cover" src="{{ $member['foto'] }}"
                                     alt="{{ $member['nama'] }}" loading="lazy">
                                 <!-- Hover overlay -->

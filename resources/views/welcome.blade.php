@@ -1,11 +1,12 @@
 <x-layouts.app-landing>
     <x-navbar />
+    <livewire:section.about-us />
 
+    <x-divide />
 
-    <!-- Our  Team Section -->
-    <livewire:section.our-team />
+    <livewire:section.our-team data-aos="fade-up" />
 
-    <!-- program goal Section -->
-
+    <x-divide />
     <livewire:section.program-goals />
+
 </x-layouts.app-landing>

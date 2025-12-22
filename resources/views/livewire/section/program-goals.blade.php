@@ -14,7 +14,7 @@
                 </flux:subheading>
             </div>
 
-            {{-- Horizontal Timeline - Modern Design --}}
+
             <div class="relative max-w-6xl mx-auto animate-slide-up" style="animation-delay: 200ms;">
 
 
@@ -206,108 +206,8 @@
         </div>
     </div>
 
-    <style>
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
-        @keyframes slide-up {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        @keyframes progress-fill {
-            from {
-                width: 0%;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        .animate-fade-in {
-            animation: fade-in 0.8s ease-out forwards;
-        }
-
-        .animate-slide-up {
-            animation: slide-up 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-shimmer {
-            animation: shimmer 2s infinite;
-        }
-
-        .timeline-progress {
-            animation: progress-fill 2s ease-out forwards;
-            animation-delay: 0.5s;
-            width: 0;
-        }
-
-        .timeline-item {
-            animation: slide-up 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .timeline-item:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-
-        .timeline-item:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-
-        .timeline-item:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-
-        .timeline-item:nth-child(4) {
-            animation-delay: 0.8s;
-        }
-
-        .timeline-item:nth-child(5) {
-            animation-delay: 1s;
-        }
-
-        [x-cloak] {
-            display: none;
-        }
-
-        /* Mobile responsive adjustments */
-        @media (max-width: 768px) {
-            .timeline-item {
-                margin-bottom: 2rem;
-            }
-        }
-    </style>
-
-    @script
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const observer = new IntersectionObserver((entries) => {
@@ -326,5 +226,5 @@
             });
         });
     </script>
-    @endscript
+
 </section>
