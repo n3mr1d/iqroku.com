@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\Register;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    return view('welcome');
 })->name('home');
 
-Route::prefix('/register')->group(function () {
-
-    // new register page for TPA (Student baruu)
-    Route::get('/newtpa', [Register::class, 'newTpa'])->middleware('guest')->name('index.newtpa');
-    Route::post('/newtpa', [Register::class, 'storeTpa'])->middleware('guest')->name('store.newtpa');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', Login::class)->name('login');
+    Route::get('/register', Register::class)->name('register');
 });
+
+
+require_once('dashboard.php');
