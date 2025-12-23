@@ -1,39 +1,26 @@
 <section>
-    <div class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-
-            {{-- Header Section --}}
-            <div class="text-center mb-16 animate-fade-in">
-                <flux:badge color="orange" icon="star" size="sm" class="mb-4">Program Goals</flux:badge>
-                <flux:heading size="xl" class="mb-3">{{ $programTitle }}</flux:heading>
-                <flux:subheading class="text-slate-600">
-                    <span class="inline-flex items-center gap-2">
-                        <flux:icon.calendar-days variant="micro" class="text-slate-400" />
-                        {{ $startDate }} – {{ $endDate }}
-                    </span>
-                </flux:subheading>
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-6">
+                    <flux:badge color="indigo" icon="puzzle-piece"> Program Goals </flux:badge>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Program Goals
+                </h1>
             </div>
 
-
-            <div class="relative max-w-6xl mx-auto animate-slide-up" style="animation-delay: 200ms;">
-
-
+            <div class="relative max-w-6xl mx-auto">
                 <div class="relative">
-
-                    <div
-                        class="absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 hidden md:block">
-                    </div>
+                    {{-- Progress Line --}}
                     <div
                         class="absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hidden md:block timeline-progress">
                     </div>
 
-                    {{-- Timeline Items --}}
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4">
-
                         {{-- Item 1 --}}
-                        <div class="timeline-item group">
+                        <div class="timeline-item group opacity-0">
                             <div class="flex flex-col items-center text-center">
-                                {{-- Circle --}}
                                 <div class="relative mb-6">
                                     <div
                                         class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-xl transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 z-10 relative">
@@ -43,31 +30,25 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </div>
-                                    {{-- Pulse effect --}}
                                     <div class="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-20">
                                     </div>
-                                    <div class="absolute inset-0 rounded-full bg-blue-400 opacity-30"></div>
                                 </div>
 
-                                {{-- Content Card --}}
                                 <div
                                     class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-blue-100 group-hover:border-blue-400">
                                     <span
                                         class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-3 shadow-md">
                                         Sep 2025 – Jun 2026
                                     </span>
-                                    <h3 class="text-base font-bold text-slate-800 mb-2">
-                                        TPA Berjalan Konsisten
-                                    </h3>
-                                    <p class="text-sm text-slate-600 leading-relaxed">
-                                        Program berjalan rutin sesuai kalender akademik.
-                                    </p>
+                                    <h3 class="text-base font-bold text-slate-800 mb-2">TPA Runs Consistently</h3>
+                                    <p class="text-sm text-slate-600 leading-relaxed">The program is conducted regularly
+                                        according to the academic calendar.</p>
                                 </div>
                             </div>
                         </div>
 
                         {{-- Item 2 --}}
-                        <div class="timeline-item group">
+                        <div class="timeline-item group opacity-0">
                             <div class="flex flex-col items-center text-center">
                                 <div class="relative mb-6">
                                     <div
@@ -88,13 +69,13 @@
                                     class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-green-100 group-hover:border-green-400">
                                     <span
                                         class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-3 shadow-md">
-                                        Target Tahunan
+                                        Annual Target
                                     </span>
                                     <h3 class="text-base font-bold text-slate-800 mb-2">
-                                        90% Siswa Naik Level Iqra'
+                                        90% of Students Advance in Iqra’
                                     </h3>
                                     <p class="text-sm text-slate-600 leading-relaxed">
-                                        Minimal naik 1 tingkat dalam 1 tahun.
+                                        At least one level improvement within one year.
                                     </p>
                                 </div>
                             </div>
@@ -121,13 +102,13 @@
                                     class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-orange-100 group-hover:border-orange-400">
                                     <span
                                         class="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-3 shadow-md">
-                                        Evaluasi Semester
+                                        Semester Evaluation
                                     </span>
                                     <h3 class="text-base font-bold text-slate-800 mb-2">
-                                        Kehadiran Minimal 75%
+                                        Minimum Attendance of 75%
                                     </h3>
                                     <p class="text-sm text-slate-600 leading-relaxed">
-                                        Konsistensi kehadiran setiap semester.
+                                        Consistent attendance each semester.
                                     </p>
                                 </div>
                             </div>
@@ -157,10 +138,10 @@
                                         Monitoring
                                     </span>
                                     <h3 class="text-base font-bold text-slate-800 mb-2">
-                                        Keterlibatan Orang Tua
+                                        Parental Involvement
                                     </h3>
                                     <p class="text-sm text-slate-600 leading-relaxed">
-                                        60% orang tua mendampingi latihan di rumah.
+                                        60% of parents actively assist with practice at home.
                                     </p>
                                 </div>
                             </div>
@@ -187,18 +168,17 @@
                                     class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-pink-100 group-hover:border-pink-400">
                                     <span
                                         class="inline-block bg-gradient-to-r from-pink-500 to-pink-600 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-3 shadow-md">
-                                        Survei Akhir
+                                        Final Survey
                                     </span>
                                     <h3 class="text-base font-bold text-slate-800 mb-2">
-                                        Kepuasan Orang Tua ≥ 80%
+                                        Parent Satisfaction ≥ 80%
                                     </h3>
                                     <p class="text-sm text-slate-600 leading-relaxed">
-                                        Berdasarkan hasil survei evaluasi program.
+                                        Based on the results of the program evaluation survey.
                                     </p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -209,7 +189,7 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {

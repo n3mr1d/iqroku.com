@@ -5,7 +5,7 @@
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
                 <flux:badge color="lime" size="sm" class="mb-4" icon="user-circle">Team</flux:badge>
 
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900" data-aos="fade">
+                <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-gray-900" data-aos="fade">
                     Our Team
                 </h2>
 

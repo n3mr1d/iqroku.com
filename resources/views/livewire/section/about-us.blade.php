@@ -3,15 +3,16 @@
     <section class="pt-32 pb-20 px-6">
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
-            <div
-                class="mx-auto flex justify-center flex-col justify-items-center items-center  mb-8 max-w-screen-sm lg:mb-16">
-                <flux:badge color="lime" size="sm" class="mb-4" icon="user">About Us</flux:badge>
-
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900" data-aos="fade">
+            <div data-aos="fade-right" class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-6">
+                    <flux:badge color="lime" icon="user"> About Us </flux:badge>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                     About
-                </h2>
+                </h1>
 
             </div>
+
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Left Content -->
                 <div data-aos="fade-up" class="space-y-6">
@@ -46,28 +47,28 @@
                 <div class="relative h-[500px]">
                     <!-- Image 1 -->
                     <div data-aos="zoom-out-right" class="absolute top-0 shadow-xl/30 left-0 w-48 h-56 float-animation">
-                        <img src="{{asset('/source/IMG_2046.JPG')}}" alt="Workspace"
+                        <img src="{{ asset('/source/IMG_2046.JPG') }}" alt="Workspace"
                             class="w-full h-full object-cover rounded-2xl shadow-2xl">
                     </div>
 
                     <!-- Image 2 -->
                     <div data-aos="zoom-out-left"
                         class="absolute shadow-xl/30 top-12 right-0 w-52 h-60 float-animation">
-                        <img src="{{asset('/source/IMG_2047.JPG')}}" alt="Team Meeting"
+                        <img src="{{ asset('/source/IMG_2047.JPG') }}" alt="Team Meeting"
                             class="w-full h-full object-cover rounded-2xl shadow-2xl">
                     </div>
 
                     <!-- Image 3 -->
                     <div data-aos="zoom-out-right"
                         class="absolute shadow-xl/30 bottom-20 left-12 w-44 h-52 float-animation">
-                        <img src="{{asset('/source/IMG_2048.JPG')}}" alt="Professional"
+                        <img src="{{ asset('/source/IMG_2048.JPG') }}" alt="Professional"
                             class="w-full h-full object-cover rounded-2xl shadow-2xl">
                     </div>
 
                     <!-- Image 4 -->
                     <div data-aos="zoom-out-left"
                         class="absolute bottom-0 shadow-xl/30 right-8 w-48 h-56 float-animation">
-                        <img src="{{asset('/source/IMG_2049.JPG')}}" alt="Office"
+                        <img src="{{ asset('/source/IMG_2049.JPG') }}" alt="Office"
                             class="w-full h-full object-cover rounded-2xl shadow-2xl">
                     </div>
                 </div>
@@ -152,7 +153,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="flex-1">
+                            <div class="flex-1 sm:flex-col sm:items-center  ">
                                 <h2 class="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                                     Our Mission
 
@@ -212,8 +213,8 @@
                     class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-green-300 hover:-translate-y-2">
                     <div
                         class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center mb-6 group-hover:from-green-500 group-hover:to-green-600 transition-all duration-300 group-hover:scale-110">
-                        <svg class="w-8 h-8 text-green-600 group-hover:text-white transition-colors" fill="currentColor"
-                            viewBox="0 0 20 20">
+                        <svg class="w-8 h-8 text-green-600 group-hover:text-white transition-colors"
+                            fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                 d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
                                 clip-rule="evenodd" />

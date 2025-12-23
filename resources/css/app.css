@@ -5,8 +5,9 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
 @source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
 @plugin "daisyui" {
-    themes: light --default;
+    themes: false;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -43,6 +44,7 @@
 }
 
 @layer base {
+
     *,
     ::after,
     ::before,
@@ -65,6 +67,7 @@ textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
+
 @keyframes fade-in {
     from {
         opacity: 0;

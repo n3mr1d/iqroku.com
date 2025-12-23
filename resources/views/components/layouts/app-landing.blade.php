@@ -9,7 +9,7 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
+    <link rel="stylesheet" href="{{ asset('source/icon/css/all.css') }}" />
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+    <x-navbar />
     <flux:main>
         {{ $slot }}
     </flux:main>
