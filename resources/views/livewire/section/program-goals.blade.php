@@ -1,11 +1,11 @@
-<section>
+<section id="goals">
     <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <div class="inline-flex items-center gap-3 mb-6">
+                <div class="inline-flex items-center gap-3 mb-6 opacity-0">
                     <flux:badge color="indigo" icon="puzzle-piece"> Program Goals </flux:badge>
                 </div>
-                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 opacity-0">
                     Program Goals
                 </h1>
             </div>
@@ -82,7 +82,7 @@
                         </div>
 
                         {{-- Item 3 --}}
-                        <div class="timeline-item group">
+                        <div class="timeline-item group opacity-0">
                             <div class="flex flex-col items-center text-center">
                                 <div class="relative mb-6">
                                     <div
@@ -115,7 +115,7 @@
                         </div>
 
                         {{-- Item 4 --}}
-                        <div class="timeline-item group">
+                        <div class="timeline-item group opacity-0">
                             <div class="flex flex-col items-center text-center">
                                 <div class="relative mb-6">
                                     <div
@@ -148,7 +148,7 @@
                         </div>
 
                         {{-- Item 5 --}}
-                        <div class="timeline-item group">
+                        <div class="timeline-item group opacity-0">
                             <div class="flex flex-col items-center text-center">
                                 <div class="relative mb-6">
                                     <div
@@ -187,24 +187,5 @@
     </div>
 
 
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-slide-up');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            });
-
-            document.querySelectorAll('.timeline-item').forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
 
 </section>

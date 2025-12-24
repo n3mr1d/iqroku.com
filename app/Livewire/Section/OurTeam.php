@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 
 class OurTeam extends Component
 {
-    use WithoutUrlPagination,WithPagination;
+    use WithoutUrlPagination, WithPagination;
 
     // Number of items per page
     public $perPage = 8;
@@ -24,105 +24,105 @@ class OurTeam extends Component
             [
                 'nama' => 'Gabriel F.Harris',
                 'posisi' => 'Ketua TPA Abu Dhabi',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Gabriel.jpg',
             ],
             [
                 'nama' => 'Rifqi M. Firdaus',
                 'posisi' => 'Sekertaris TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Rifqi.jpg',
             ],
             [
                 'nama' => 'Fauzan Nur A.',
                 'posisi' => 'Bendahara TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Fauzan.jpg',
             ],
             [
                 'nama' => 'M. Dhia AL THAF',
                 'posisi' => 'Tim Media TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Dhia.jpg',
 
             ],
             [
                 'nama' => 'Maria Ulfa',
                 'posisi' => 'Pengajar Group 1 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'unknown.avif',
 
             ],
             [
                 'nama' => 'Fina Annisa',
                 'posisi' => 'Pengajar Group 2 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Fina.jpg',
 
             ],
             [
                 'nama' => 'Rahmatullah',
                 'posisi' => 'Pengajar Group 3 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Rahmatullah.jpg',
             ],
             [
                 'nama' => 'Fathimah',
                 'posisi' => 'Pengajar Group 4 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Fathimah.jpg',
             ],
             [
                 'nama' => 'Syabina',
                 'posisi' => 'Pengajar Group 5 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'unknown.avif',
             ],
             [
                 'nama' => 'Salsabila',
                 'posisi' => 'Pengajar Group 6 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'unknown.avif',
             ],
             [
                 'nama' => 'Zarrar',
                 'posisi' => 'Pengajar Group 7 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Zarrar.jpg',
             ],
             [
                 'nama' => 'Neba',
                 'posisi' => 'Pengajar Group 8 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Neba.jpg',
             ],
             [
                 'nama' => 'Eko',
                 'posisi' => 'Pengajar Group 9 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Eko.jpg',
             ],
             [
                 'nama' => 'Imam',
                 'posisi' => 'Pengajar Group 10 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Imam.jpg',
             ],
             [
                 'nama' => 'Harits',
                 'posisi' => 'Pengajar Group 11 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Harits.jpg',
             ],
             [
                 'nama' => 'Sofyan',
                 'posisi' => 'Pengajar Group 12 TPA',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Sofyan.jpg',
             ],
             [
                 'nama' => 'Hubaisy',
                 'posisi' => 'Pengajar Group  Tahsin 1',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Hubaisy.jpg',
             ],
             [
                 'nama' => 'Fattah',
                 'posisi' => 'Pengajar Group Tahsin 2',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Fattah.jpg',
             ],
             [
                 'nama' => 'Amir',
                 'posisi' => 'Pengajar Group Tahsin 3',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Amir.jpg',
             ],
             [
                 'nama' => 'Ridho',
                 'posisi' => 'Pengajar Group Tahsin 4',
-                'foto' => 'https://avatars.githubusercontent.com/u/100200171?v=4',
+                'foto' => 'Ridho.jpg',
 
             ],
         ];

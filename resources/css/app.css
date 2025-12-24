@@ -52,6 +52,8 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+
 }
 
 [data-flux-field]:not(ui-radio, ui-checkbox) {
@@ -154,6 +156,22 @@ select:focus[data-flux-control] {
 
 .timeline-item:nth-child(5) {
     animation-delay: 1s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.float-animation {
+    animation: float 4s ease-in-out infinite;
 }
 
 [x-cloak] {

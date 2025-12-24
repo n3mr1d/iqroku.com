@@ -12,7 +12,8 @@ class KurikulumInti extends Component
         $curricula = [
             [
                 'id' => 1,
-                'icon' => 'book-open',
+                'text' => 'text-blue-500',
+                'icon' => 'fa-solid fa-book',
                 'title' => 'IQRA\' 1–6 & AL-QUR\'AN',
                 'description' => 'Systematic learning from basic Arabic letters to Qur\'an recitation with proper tajweed',
                 'color' => 'from-blue-50 to-blue-100',
@@ -21,7 +22,8 @@ class KurikulumInti extends Component
             ],
             [
                 'id' => 2,
-                'icon' => '',
+                'text' => 'text-green-500',
+                'icon' => 'fa-solid fa-person-praying',
                 'title' => 'DAILY PRAYERS MEMORIZATION',
                 'description' => 'Essential daily prayers for children including morning, evening, and mealtime supplications',
                 'color' => 'from-green-50 to-green-100',
@@ -30,7 +32,8 @@ class KurikulumInti extends Component
             ],
             [
                 'id' => 3,
-                'icon' => '🕌',
+                'text' => 'text-purple-500',
+                'icon' => 'fa-solid fa-mosque',
                 'title' => 'ISLAMIC BASICS',
                 'description' => 'Fundamental Islamic knowledge covering manners (Adab), basic jurisprudence (Fiqh), and pillars of faith',
                 'color' => 'from-purple-50 to-purple-100',
@@ -39,7 +42,8 @@ class KurikulumInti extends Component
             ],
             [
                 'id' => 4,
-                'icon' => '📝',
+                'text' => 'text-orange-500',
+                'icon' => 'fa-solid fa-memory',
                 'title' => 'WEEKLY SURAH MEMORIZATION',
                 'description' => 'Structured program to memorize short surahs from Juz Amma with proper pronunciation',
                 'color' => 'from-orange-50 to-orange-100',
@@ -48,7 +52,8 @@ class KurikulumInti extends Component
             ],
             [
                 'id' => 5,
-                'icon' => '📚',
+                'text' => 'text-pink-500',
+                'icon' => 'fa-regular fa-books',
                 'title' => 'ISLAMIC STORIES',
                 'description' => 'Inspirational stories of Prophets and companions to build character and understanding',
                 'color' => 'from-pink-50 to-pink-100',
@@ -57,7 +62,8 @@ class KurikulumInti extends Component
             ],
             [
                 'id' => 6,
-                'icon' => '✍️',
+                'text' => 'text-teal-500',
+                'icon' => 'fa-solid fa-pen',
                 'title' => 'ADDITIONAL ACTIVITIES',
                 'description' => 'Qur\'anic verse writing practice, Islamic educational videos, and interactive learning for teens',
                 'color' => 'from-teal-50 to-teal-100',

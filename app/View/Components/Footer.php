@@ -21,6 +21,14 @@ class Footer extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.footer');
+        $navItems = [
+            ['id' => 'hero', 'label' => 'Home'],
+            ['id' => 'about', 'label' => 'About'],
+            ['id' => 'team', 'label' => 'Team'],
+            ['id' => 'curriculum', 'label' => 'Program'],
+            ['id' => 'activities', 'label' => 'Activities'],
+            ['id' => 'rules', 'label' => 'Rules'],
+        ];
+        return view('components.footer', compact('navItems'));
     }
 }

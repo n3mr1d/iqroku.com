@@ -1,5 +1,5 @@
 <div>
-    <section class="relative overflow-hidden min-h-screen flex items-center py-12 md:py-0" id="hero-section">
+    <section id="hero" class="relative overflow-hidden min-h-screen flex items-center py-12 md:py-0">
         <div class="w-full">
             <!-- Decorative Background Elements -->
             <div class="absolute inset-0 bg-white/50 dark:bg-black/50 backdrop-blur-3xl -z-10"></div>
@@ -57,7 +57,7 @@
                                 Contact Us
                             </a>
 
-                            <a href="{{ route('register') }}"
+                            <a wire:navigate href="{{ route('register') }}"
                                 class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors w-full sm:w-auto">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -90,7 +90,7 @@
             </div>
 
             <!-- Leadership Section -->
-            <div class="container mx-auto px-4 sm:px-6 mt-20 md:mt-32">
+            <div class="container mx-auto px-4  sm:px-6 mt-20 md:mt-32">
                 <!-- Section Header -->
                 <div class="text-center mb-12 md:mb-16 leadership-header opacity-0">
                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4">
@@ -101,93 +101,29 @@
 
                 <!-- Leadership Cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
-                    <!-- Card 1 -->
-                    <div
-                        class="image-hero group relative rounded-xl overflow-hidden bg-[#FAEDE4] dark:bg-gray-800 border-b-4 border-[#F04E29] transition-all duration-300 hover:shadow-2xl opacity-0">
-                        <div class="relative overflow-hidden">
-                            <img class="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover:rounded-br-[100px] saturate-0 group-hover:saturate-100"
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop"
-                                alt="Gabriel F.Harris" />
+                    @foreach ($leadership as $leader)
+                        <div
+                            class="image-hero group relative rounded-xl overflow-hidden bg-[#FAEDE4] dark:bg-gray-800 border-b-4 border-[#F04E29] transition-all duration-300 hover:shadow-2xl opacity-0">
+                            <div class="relative overflow-hidden">
+                                <img class="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover:rounded-br-[100px] saturate-0 group-hover:saturate-100"
+                                    src="{{ asset('source/team/' . $leader['image']) }}" alt="{{ $leader['name'] }}" />
+                            </div>
+                            <div class="p-4">
+                                <p class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
+                                    {{ $leader['name'] }}
+                                </p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">{{ $leader['position'] }}</p>
+                            </div>
+                            <svg class="absolute right-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                xmlns="http://www.w3.org/2000/svg" width="35" height="50" viewBox="0 0 45 64"
+                                fill="none">
+                                <path
+                                    d="M5.67927 0.685928C5.66838 0.658706 5.65749 0.636925 5.65749 0.636925L3.81168 1.12696C5.55403 11.7281 0.588324 15.4905 0.375974 15.6484L1.49217 17.2056C1.69363 17.0641 5.49414 14.2654 6.03318 7.14353C9.0333 14.2545 13.0244 20.1731 17.1298 24.774C17.059 24.8774 16.9882 24.9754 16.9229 25.0789C14.3311 29.0645 14.0861 34.651 16.1933 41.6912C18.6271 49.8203 24.5239 57.748 32.3754 63.4434L33.5025 61.8916C25.9886 56.4358 20.3477 48.8729 18.0336 41.1358C16.1388 34.8089 16.2913 29.6526 18.4692 26.2114C21.7035 29.5927 24.9432 32.1518 27.7636 33.8288C33.8945 37.4659 38.2232 36.377 40.2541 35.4078C42.4919 34.3406 44.1254 32.375 44.414 30.4094C44.4575 30.1099 44.4793 29.805 44.4793 29.5001C44.4793 27.5509 43.5864 25.5853 41.9039 23.8756C38.4628 20.3691 32.713 18.7465 26.5276 19.5306C23.1518 19.9607 20.3695 21.2457 18.3603 23.2821C14.4455 18.8554 10.645 13.1655 7.77554 6.34314C9.95348 8.22706 13.2476 10.2199 18.1425 11.5266L18.638 9.67539C9.24565 7.16531 6.28364 1.94369 5.75005 0.838382C5.73371 0.783935 5.71193 0.729488 5.6956 0.669594L5.67382 0.669594L5.67927 0.685928ZM26.7672 21.4308C33.3555 20.5923 38.2014 22.8411 40.5372 25.215C42.0509 26.7559 42.7533 28.5037 42.5192 30.1317C42.3558 31.2425 41.3431 32.767 39.4319 33.6763C37.744 34.4822 34.1069 35.3642 28.7437 32.179C25.9886 30.5455 22.8197 28.03 19.6617 24.6923C21.7797 22.5035 24.6056 21.6976 26.7726 21.4254L26.7672 21.4308Z"
+                                    fill="#F04E29" />
+                            </svg>
                         </div>
-                        <div class="p-4">
-                            <p class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Gabriel F.Harris
-                            </p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Ketua TPA Abu Dhabi</p>
-                        </div>
-                        <svg class="absolute right-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            xmlns="http://www.w3.org/2000/svg" width="35" height="50" viewBox="0 0 45 64"
-                            fill="none">
-                            <path
-                                d="M5.67927 0.685928C5.66838 0.658706 5.65749 0.636925 5.65749 0.636925L3.81168 1.12696C5.55403 11.7281 0.588324 15.4905 0.375974 15.6484L1.49217 17.2056C1.69363 17.0641 5.49414 14.2654 6.03318 7.14353C9.0333 14.2545 13.0244 20.1731 17.1298 24.774C17.059 24.8774 16.9882 24.9754 16.9229 25.0789C14.3311 29.0645 14.0861 34.651 16.1933 41.6912C18.6271 49.8203 24.5239 57.748 32.3754 63.4434L33.5025 61.8916C25.9886 56.4358 20.3477 48.8729 18.0336 41.1358C16.1388 34.8089 16.2913 29.6526 18.4692 26.2114C21.7035 29.5927 24.9432 32.1518 27.7636 33.8288C33.8945 37.4659 38.2232 36.377 40.2541 35.4078C42.4919 34.3406 44.1254 32.375 44.414 30.4094C44.4575 30.1099 44.4793 29.805 44.4793 29.5001C44.4793 27.5509 43.5864 25.5853 41.9039 23.8756C38.4628 20.3691 32.713 18.7465 26.5276 19.5306C23.1518 19.9607 20.3695 21.2457 18.3603 23.2821C14.4455 18.8554 10.645 13.1655 7.77554 6.34314C9.95348 8.22706 13.2476 10.2199 18.1425 11.5266L18.638 9.67539C9.24565 7.16531 6.28364 1.94369 5.75005 0.838382C5.73371 0.783935 5.71193 0.729488 5.6956 0.669594L5.67382 0.669594L5.67927 0.685928ZM26.7672 21.4308C33.3555 20.5923 38.2014 22.8411 40.5372 25.215C42.0509 26.7559 42.7533 28.5037 42.5192 30.1317C42.3558 31.2425 41.3431 32.767 39.4319 33.6763C37.744 34.4822 34.1069 35.3642 28.7437 32.179C25.9886 30.5455 22.8197 28.03 19.6617 24.6923C21.7797 22.5035 24.6056 21.6976 26.7726 21.4254L26.7672 21.4308Z"
-                                fill="#F04E29" />
-                        </svg>
-                    </div>
+                    @endforeach
 
-                    <!-- Card 2 -->
-                    <div
-                        class="image-hero group relative rounded-xl overflow-hidden bg-[#FAEDE4] dark:bg-gray-800 border-b-4 border-[#F04E29] transition-all duration-300 hover:shadow-2xl opacity-0">
-                        <div class="relative overflow-hidden">
-                            <img class="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover:rounded-br-[100px] saturate-0 group-hover:saturate-100"
-                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop"
-                                alt="Rifqi M. Firdaus" />
-                        </div>
-                        <div class="p-4">
-                            <p class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Rifqi M. Firdaus
-                            </p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Sekertaris TPA</p>
-                        </div>
-                        <svg class="absolute right-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            xmlns="http://www.w3.org/2000/svg" width="35" height="50" viewBox="0 0 45 64"
-                            fill="none">
-                            <path
-                                d="M5.67927 0.685928C5.66838 0.658706 5.65749 0.636925 5.65749 0.636925L3.81168 1.12696C5.55403 11.7281 0.588324 15.4905 0.375974 15.6484L1.49217 17.2056C1.69363 17.0641 5.49414 14.2654 6.03318 7.14353C9.0333 14.2545 13.0244 20.1731 17.1298 24.774C17.059 24.8774 16.9882 24.9754 16.9229 25.0789C14.3311 29.0645 14.0861 34.651 16.1933 41.6912C18.6271 49.8203 24.5239 57.748 32.3754 63.4434L33.5025 61.8916C25.9886 56.4358 20.3477 48.8729 18.0336 41.1358C16.1388 34.8089 16.2913 29.6526 18.4692 26.2114C21.7035 29.5927 24.9432 32.1518 27.7636 33.8288C33.8945 37.4659 38.2232 36.377 40.2541 35.4078C42.4919 34.3406 44.1254 32.375 44.414 30.4094C44.4575 30.1099 44.4793 29.805 44.4793 29.5001C44.4793 27.5509 43.5864 25.5853 41.9039 23.8756C38.4628 20.3691 32.713 18.7465 26.5276 19.5306C23.1518 19.9607 20.3695 21.2457 18.3603 23.2821C14.4455 18.8554 10.645 13.1655 7.77554 6.34314C9.95348 8.22706 13.2476 10.2199 18.1425 11.5266L18.638 9.67539C9.24565 7.16531 6.28364 1.94369 5.75005 0.838382C5.73371 0.783935 5.71193 0.729488 5.6956 0.669594L5.67382 0.669594L5.67927 0.685928ZM26.7672 21.4308C33.3555 20.5923 38.2014 22.8411 40.5372 25.215C42.0509 26.7559 42.7533 28.5037 42.5192 30.1317C42.3558 31.2425 41.3431 32.767 39.4319 33.6763C37.744 34.4822 34.1069 35.3642 28.7437 32.179C25.9886 30.5455 22.8197 28.03 19.6617 24.6923C21.7797 22.5035 24.6056 21.6976 26.7726 21.4254L26.7672 21.4308Z"
-                                fill="#F04E29" />
-                        </svg>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div
-                        class="image-hero group relative rounded-xl overflow-hidden bg-[#FAEDE4] dark:bg-gray-800 border-b-4 border-[#F04E29] transition-all duration-300 hover:shadow-2xl opacity-0">
-                        <div class="relative overflow-hidden">
-                            <img class="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover:rounded-br-[100px] saturate-0 group-hover:saturate-100"
-                                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop"
-                                alt="M. Dhia AL THAF" />
-                        </div>
-                        <div class="p-4">
-                            <p class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">M. Dhia AL THAF
-                            </p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Tim Media TPA</p>
-                        </div>
-                        <svg class="absolute right-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            xmlns="http://www.w3.org/2000/svg" width="35" height="50" viewBox="0 0 45 64"
-                            fill="none">
-                            <path
-                                d="M5.67927 0.685928C5.66838 0.658706 5.65749 0.636925 5.65749 0.636925L3.81168 1.12696C5.55403 11.7281 0.588324 15.4905 0.375974 15.6484L1.49217 17.2056C1.69363 17.0641 5.49414 14.2654 6.03318 7.14353C9.0333 14.2545 13.0244 20.1731 17.1298 24.774C17.059 24.8774 16.9882 24.9754 16.9229 25.0789C14.3311 29.0645 14.0861 34.651 16.1933 41.6912C18.6271 49.8203 24.5239 57.748 32.3754 63.4434L33.5025 61.8916C25.9886 56.4358 20.3477 48.8729 18.0336 41.1358C16.1388 34.8089 16.2913 29.6526 18.4692 26.2114C21.7035 29.5927 24.9432 32.1518 27.7636 33.8288C33.8945 37.4659 38.2232 36.377 40.2541 35.4078C42.4919 34.3406 44.1254 32.375 44.414 30.4094C44.4575 30.1099 44.4793 29.805 44.4793 29.5001C44.4793 27.5509 43.5864 25.5853 41.9039 23.8756C38.4628 20.3691 32.713 18.7465 26.5276 19.5306C23.1518 19.9607 20.3695 21.2457 18.3603 23.2821C14.4455 18.8554 10.645 13.1655 7.77554 6.34314C9.95348 8.22706 13.2476 10.2199 18.1425 11.5266L18.638 9.67539C9.24565 7.16531 6.28364 1.94369 5.75005 0.838382C5.73371 0.783935 5.71193 0.729488 5.6956 0.669594L5.67382 0.669594L5.67927 0.685928ZM26.7672 21.4308C33.3555 20.5923 38.2014 22.8411 40.5372 25.215C42.0509 26.7559 42.7533 28.5037 42.5192 30.1317C42.3558 31.2425 41.3431 32.767 39.4319 33.6763C37.744 34.4822 34.1069 35.3642 28.7437 32.179C25.9886 30.5455 22.8197 28.03 19.6617 24.6923C21.7797 22.5035 24.6056 21.6976 26.7726 21.4254L26.7672 21.4308Z"
-                                fill="#F04E29" />
-                        </svg>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div
-                        class="image-hero group relative rounded-xl overflow-hidden bg-[#FAEDE4] dark:bg-gray-800 border-b-4 border-[#F04E29] transition-all duration-300 hover:shadow-2xl opacity-0">
-                        <div class="relative overflow-hidden">
-                            <img class="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover:rounded-br-[100px] saturate-0 group-hover:saturate-100"
-                                src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=500&fit=crop"
-                                alt="Fauzan Nur A." />
-                        </div>
-                        <div class="p-4">
-                            <p class="text-base md:text-lg font-semibold text-gray-900 dark:text-white">Fauzan Nur A.
-                            </p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Bendahara TPA</p>
-                        </div>
-                        <svg class="absolute right-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            xmlns="http://www.w3.org/2000/svg" width="35" height="50" viewBox="0 0 45 64"
-                            fill="none">
-                            <path
-                                d="M5.67927 0.685928C5.66838 0.658706 5.65749 0.636925 5.65749 0.636925L3.81168 1.12696C5.55403 11.7281 0.588324 15.4905 0.375974 15.6484L1.49217 17.2056C1.69363 17.0641 5.49414 14.2654 6.03318 7.14353C9.0333 14.2545 13.0244 20.1731 17.1298 24.774C17.059 24.8774 16.9882 24.9754 16.9229 25.0789C14.3311 29.0645 14.0861 34.651 16.1933 41.6912C18.6271 49.8203 24.5239 57.748 32.3754 63.4434L33.5025 61.8916C25.9886 56.4358 20.3477 48.8729 18.0336 41.1358C16.1388 34.8089 16.2913 29.6526 18.4692 26.2114C21.7035 29.5927 24.9432 32.1518 27.7636 33.8288C33.8945 37.4659 38.2232 36.377 40.2541 35.4078C42.4919 34.3406 44.1254 32.375 44.414 30.4094C44.4575 30.1099 44.4793 29.805 44.4793 29.5001C44.4793 27.5509 43.5864 25.5853 41.9039 23.8756C38.4628 20.3691 32.713 18.7465 26.5276 19.5306C23.1518 19.9607 20.3695 21.2457 18.3603 23.2821C14.4455 18.8554 10.645 13.1655 7.77554 6.34314C9.95348 8.22706 13.2476 10.2199 18.1425 11.5266L18.638 9.67539C9.24565 7.16531 6.28364 1.94369 5.75005 0.838382C5.73371 0.783935 5.71193 0.729488 5.6956 0.669594L5.67382 0.669594L5.67927 0.685928ZM26.7672 21.4308C33.3555 20.5923 38.2014 22.8411 40.5372 25.215C42.0509 26.7559 42.7533 28.5037 42.5192 30.1317C42.3558 31.2425 41.3431 32.767 39.4319 33.6763C37.744 34.4822 34.1069 35.3642 28.7437 32.179C25.9886 30.5455 22.8197 28.03 19.6617 24.6923C21.7797 22.5035 24.6056 21.6976 26.7726 21.4254L26.7672 21.4308Z"
-                                fill="#F04E29" />
-                        </svg>
-                    </div>
                 </div>
             </div>
         </div>

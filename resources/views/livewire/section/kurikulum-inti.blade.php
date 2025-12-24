@@ -1,5 +1,5 @@
   <div>
-      <section class="py-16 px-4 sm:px-6  max-w-7xl mx-auto">
+      <section id="curriculum" class="py-16 px-4 sm:px-6  max-w-7xl mx-auto">
           <!-- Header -->
           <div class="text-center mb-16">
               <flux:badge icon="book-open" color="orange">Educational Program</flux:badge>
@@ -25,8 +25,9 @@
                               class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16 transform group-hover:scale-150 transition-transform duration-500">
                           </div>
                           <div
-                              class="curriculum-icon text-6xl mb-3 relative z-10 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-                              {{ $curriculum['icon'] }}
+                              class="curriculum-icon text-6xl mb-3 relative z-10 transform  transition-all duration-500">
+                              <i
+                                  class="text-4xl {{ $curriculum['text'] }} rounded-full p-2   {{ $curriculum['icon'] }}"></i>
                           </div>
                           <h3 class="curriculum-card-title text-xl font-bold text-gray-800 relative z-10 leading-tight">
                               {{ $curriculum['title'] }}
