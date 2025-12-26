@@ -2,14 +2,20 @@
 
 namespace App\Livewire\Auth;
 
+use App\Enum\Gander;
 use App\Enum\LevelTPA;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
+use App\Events\RegisterNewTpa;
+use App\Models\RegisterTpa;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Layout;
+use WireUi\Traits\WireUiActions;
+use Livewire\Attributes\Validate;
+use Illuminate\Validation\Rules\Enum;
 
 class Register extends Component
 {
+    use WireUiActions;
     #[Title('Register')]
     #[Layout('components.layouts.auth')]
 
@@ -32,21 +38,25 @@ class Register extends Component
     #[Validate('required|min:3')]
     public $name_mother = '';
 
-    #[Validate('required|numeric')]
+    #[Validate('required')]
     public $whatsapp = '';
 
     // Step 3: Additional Info
     public bool $tpalama = false;
-
-
+    #[Validate('required|email')]
+    public string $email = "";
 
     public bool $pendampingan = false;
-    public $leveltpa;
-    public $saran = '';
+    public array $levelTpaOptions = []; // list enum
+    public $leveltpa = '';      // nilai terpilih
 
+    public $saran = '';
+    public array $genderoption = [];
     public function mount()
     {
-        $this->leveltpa = LevelTPA::cases();
+        $this->levelTpaOptions = LevelTPA::cases();
+        $this->genderoption = Gander::cases();
+
     }
 
     public function nextStep()
@@ -65,7 +75,7 @@ class Register extends Component
         if ($this->step == 1) {
             $this->validate([
                 'name' => 'required|min:3',
-                'gender' => 'required|in:L,P',
+                'gender' => ['required', new Enum(Gander::class)],
                 'datebirth' => 'required|date|before:today',
             ]);
         } elseif ($this->step == 2) {
@@ -73,26 +83,64 @@ class Register extends Component
                 'name_father' => 'required|min:3',
                 'name_mother' => 'required|min:3',
                 'whatsapp' => 'required|numeric|min_digits:10',
+                'email' => 'required|email'
             ]);
         }
     }
+    private function infoSuccess(): void
+    {
 
+        $this->notification()->send([
+
+            'icon' => 'success',
+
+            'title' => 'Success Register!',
+
+            'description' => 'User registered successfully.',
+
+        ]);
+
+
+
+    }
     public function register()
     {
         $this->validate(
             [
                 'tpalama' => 'boolean',
-                'leveltpa' => 'nullable|required_if:tpalama,true|' . LevelTPA::class,
+                'leveltpa' => [
+                    'nullable',
+                    'required_if:tpalama,true',
+                    new Enum(LevelTPA::class),
+                ],
                 'pendampingan' => 'boolean',
                 'saran' => 'nullable|string',
             ],
             ['leveltpa.required_if' => 'Please select a level']
         );
+        if ($this->tpalama == false) {
+            $this->leveltpa = null;
+        }
+        ;
+        RegisterTpa::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'gender' => $this->gender,
+            'datebirth' => $this->datebirth,
+            'name_father' => $this->name_father,
+            'name_mother' => $this->name_mother,
+            'whatsapp' => $this->whatsapp,
+            'tpalama' => $this->tpalama ?? false,
+            'leveltpa' => $this->leveltpa ?? null,
+            'pendampingan' => $this->pendampingan ?? false,
+            'saran' => $this->saran ?? null,
+        ]);
+        $this->infoSuccess();
 
 
-        session()->flash('status', 'Registration successful! (Placeholder)');
+        session()->flash('status', 'User registered successfully. check you email now !!');
 
-        $this->redirect(route('login'), navigate: true);
+        return redirect()->route('login');
     }
 
     public function render()

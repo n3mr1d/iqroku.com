@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class HandleRole
@@ -16,15 +15,9 @@ class HandleRole
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        $user = Auth::user();
-
-        if ($user->role->value !== $role) {
-            return redirect()->route(
-                'dashboard.' . $user->role->value
-            );
+        if ($request->user()->role->value !== $role) {
+            abort(403);
         }
-
         return $next($request);
     }
-
 }

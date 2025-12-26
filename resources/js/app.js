@@ -1,181 +1,203 @@
 import { animate, stagger, onScroll } from "animejs";
 
 /**
- * Modern Animations using Anime.js
- * Optimized for performance and high-end aesthetics
+ * Optimized Animations using Anime.js
+ * Performance-first approach with reduced complexity
  */
 
-const initAnimations = () => {
+// Check if user prefers reduced motion
+const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
 
+// Performance check - detect low-end devices
+const isLowEndDevice = () => {
+    const memory = navigator.deviceMemory; // GB
+    const cores = navigator.hardwareConcurrency;
+    return (memory && memory < 4) || (cores && cores < 4);
+};
+
+// Optimize animation settings based on device capability
+const getOptimizedDuration = (baseDuration) => {
+    if (prefersReducedMotion) return 0;
+    if (isLowEndDevice()) return baseDuration * 0.7; // 30% faster
+    return baseDuration;
+};
+
+const getOptimizedStagger = (baseStagger) => {
+    if (prefersReducedMotion) return 0;
+    if (isLowEndDevice()) return baseStagger * 0.6; // Reduce stagger delay
+    return baseStagger;
+};
+
+/**
+ * Simplified animation helper
+ * Reduces code duplication and ensures consistent performance
+ */
+const animateOnScroll = (selector, config = {}) => {
+    if (!document.querySelector(selector)) return;
+
+    const defaultConfig = {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: getOptimizedDuration(500),
+        easing: "ease-out",
+        autoplay: onScroll({
+            target: selector,
+            start: "top 90%",
+        }),
+    };
+
+    animate(selector, { ...defaultConfig, ...config });
+};
+
+const initAnimations = () => {
+    // Skip animations if user prefers reduced motion
+    if (prefersReducedMotion) {
+        // Just make everything visible immediately
+        document.body.style.setProperty("--animation-disabled", "1");
+        return;
+    }
 
     /* ============================================================
-         HERO & NAVIGATION
+         HERO SECTION - Immediate load, no scroll trigger
       ============================================================ */
     if (document.getElementById("hero")) {
-        animate(".hero-blob", {
-            scale: [1, 1.2],
-            opacity: [0.1, 0.4],
-            direction: "alternate",
-            loop: true,
-            duration: 4000,
-            delay: stagger(1000),
-            easing: "ease-in-out",
-        });
+        // Subtle blob animation - only on high-end devices
+        if (!isLowEndDevice()) {
+            animate(".hero-blob", {
+                scale: [1, 1.15],
+                opacity: [0.2, 0.3],
+                direction: "alternate",
+                loop: true,
+                duration: 6000, // Slower for smoothness
+                delay: stagger(1500),
+                easing: "ease-in-out",
+            });
+        }
 
+        // Hero content - faster, simpler
         animate(".hero-element", {
             opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 800,
-            delay: stagger(100, { start: 200 }),
+            translateY: [15, 0],
+            duration: getOptimizedDuration(500),
+            delay: stagger(60, { start: 100 }),
             easing: "ease-out",
         });
 
         animate(".hero-image-container", {
             opacity: [0, 1],
-            translateX: [50, 0],
-            duration: 1000,
-            delay: 500,
+            translateX: [30, 0],
+            duration: getOptimizedDuration(600),
+            delay: 300,
             easing: "ease-out",
         });
     }
 
     /* ============================================================
-         ABOUT US
+         ABOUT US - Scroll triggered
       ============================================================ */
-    if (document.querySelector(".about-header")) {
-        animate(".about-header", {
-            opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 800,
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".about-header", start: "top 85%" })
-        });
+    animateOnScroll(".about-header", {
+        translateY: [20, 0],
+        duration: getOptimizedDuration(500),
+    });
 
-        animate(".about-content", {
-            opacity: [0, 1],
-            translateX: [-40, 0],
-            duration: 800,
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".about-content", start: "top 85%" })
-        });
+    animateOnScroll(".about-content", {
+        translateX: [-20, 0],
+        duration: getOptimizedDuration(500),
+    });
 
-        animate(".about-image", {
-            opacity: [0, 1],
-            scale: [0.8, 1],
-            translateY: [20, 0],
-            duration: 800,
-            delay: stagger(150),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".about-image", start: "top 90%" })
-        });
-    }
+    // Simplified image animation - no scale to reduce jank
+    animateOnScroll(".about-image", {
+        opacity: [0, 1],
+        translateY: [15, 0],
+        duration: getOptimizedDuration(500),
+        delay: stagger(getOptimizedStagger(80)),
+    });
 
     /* ============================================================
-         OUR TEAM
+         OUR TEAM - Optimized for many elements
       ============================================================ */
-    const teamSection = document.getElementById("team");
-    if (teamSection) {
-        animate(["#team flux\\:badge", "#team h2"], {
+    if (document.getElementById("team")) {
+        animateOnScroll("#team flux\\:badge, #team h2", {
+            translateY: [15, 0],
+            duration: getOptimizedDuration(500),
+        });
+
+        // Reduced animation complexity for team cards
+        animateOnScroll(".team-card", {
             opacity: [0, 1],
             translateY: [20, 0],
-            duration: 800,
-            easing: "ease-out",
-            autoplay: onScroll({ target: "#team", start: "top 90%" })
-        });
-
-        animate(".team-card", {
-            opacity: [0, 1],
-            translateY: [40, 0],
-            scale: [0.95, 1],
-            duration: 600,
-            delay: stagger(100),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".team-grid", start: "top 85%" })
+            duration: getOptimizedDuration(400),
+            delay: stagger(getOptimizedStagger(50)), // Reduced stagger
+            autoplay: onScroll({ target: ".team-grid", start: "top 85%" }),
         });
     }
 
     /* ============================================================
-         LEADERSHIP (inside Hero or separate)
+         LEADERSHIP
       ============================================================ */
-    if (document.querySelector(".leadership-header")) {
-        animate(".leadership-header", {
-            opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 800,
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".leadership-header", start: "top 90%" })
-        });
+    animateOnScroll(".leadership-header", {
+        translateY: [20, 0],
+        duration: getOptimizedDuration(500),
+    });
 
-        animate(".image-hero", {
-            opacity: [0, 1],
-            translateY: [40, 0],
-            scale: [0.9, 1],
-            duration: 800,
-            delay: stagger(150),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".image-hero", start: "top 85%" })
-        });
-    }
+    animateOnScroll(".image-hero", {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: getOptimizedDuration(500),
+        delay: stagger(getOptimizedStagger(80)),
+    });
 
     /* ============================================================
          PROGRAM GOALS
       ============================================================ */
     if (document.getElementById("goals")) {
-        animate(["#goals flux\\:badge", "#goals h1"], {
-            opacity: [0, 1],
-            translateY: [20, 0],
-            duration: 800,
-            easing: "ease-out",
-            autoplay: onScroll({ target: "#goals", start: "top 90%" })
+        animateOnScroll("#goals flux\\:badge, #goals h1", {
+            translateY: [15, 0],
+            duration: getOptimizedDuration(500),
         });
 
-        animate("#goals .timeline-item", {
+        animateOnScroll("#goals .timeline-item", {
             opacity: [0, 1],
-            translateY: [40, 0],
-            duration: 800,
-            delay: stagger(150),
-            easing: "ease-out",
-            autoplay: onScroll({ target: "#goals", start: "top 85%" })
+            translateY: [20, 0],
+            duration: getOptimizedDuration(500),
+            delay: stagger(getOptimizedStagger(80)),
+            autoplay: onScroll({ target: "#goals", start: "top 85%" }),
         });
     }
 
     /* ============================================================
-         TIMELINE
+         TIMELINE - Simplified for performance
       ============================================================ */
     if (document.querySelector("#waktu")) {
-        animate([".waktu-badge", ".waktu-title"], {
-            opacity: [0, 1],
+        animateOnScroll(".waktu-badge, .waktu-title", {
             translateY: [20, 0],
-            duration: 800,
-            delay: stagger(150),
-            easing: "ease-out",
-            autoplay: onScroll({ target: "#waktu", start: "top 85%" })
+            duration: getOptimizedDuration(500),
+            delay: stagger(getOptimizedStagger(100)),
         });
 
-        animate(".timeline-track-line", {
+        // Timeline line - optimized
+        animateOnScroll(".timeline-track-line", {
             scaleX: [0, 1],
             transformOrigin: "left",
-            duration: 1200,
+            duration: getOptimizedDuration(800),
             easing: "ease-in-out",
-            autoplay: onScroll({ target: ".timeline-track-line", start: "top 90%" })
         });
 
-        animate("#waktu .timeline-item", {
+        // Simplified scale animation
+        animateOnScroll("#waktu .timeline-item", {
             opacity: [0, 1],
-            scale: [0, 1],
-            duration: 1000,
-            delay: stagger(150),
-            easing: "ease-out",
-            autoplay: onScroll({ target: "#waktu .timeline-item", start: "top 85%" })
+            scale: [0.8, 1],
+            duration: getOptimizedDuration(500),
+            delay: stagger(getOptimizedStagger(100)),
         });
 
-        animate(".timeline-label", {
+        animateOnScroll(".timeline-label", {
             opacity: [0, 1],
-            translateY: [20, 0],
-            duration: 600,
-            delay: stagger(100),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".timeline-label", start: "top 90%" })
+            translateY: [15, 0],
+            duration: getOptimizedDuration(400),
+            delay: stagger(getOptimizedStagger(60)),
         });
     }
 
@@ -183,123 +205,134 @@ const initAnimations = () => {
          RULES
       ============================================================ */
     if (document.querySelector("#rules")) {
-        animate(["#rules .inline-flex", "#rules h1", "#rules p.text-xl"], {
-            opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 800,
-            delay: stagger(150),
-            easing: "ease-out",
-            autoplay: onScroll({ target: "#rules", start: "top 90%" })
+        animateOnScroll("#rules .inline-flex, #rules h1, #rules p.text-xl", {
+            translateY: [20, 0],
+            duration: getOptimizedDuration(500),
+            delay: stagger(getOptimizedStagger(100)),
         });
 
-        animate(".rule-card", {
+        animateOnScroll(".rule-card", {
             opacity: [0, 1],
-            translateY: [40, 0],
-            duration: 600,
-            delay: stagger(100),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".rule-card", start: "top 90%" })
+            translateY: [20, 0],
+            duration: getOptimizedDuration(400),
+            delay: stagger(getOptimizedStagger(60)),
         });
     }
 
     /* ============================================================
          SUPPORTING ACTIVITIES
       ============================================================ */
-    if (document.querySelector(".activities-header")) {
-        animate(".activities-header", {
-            opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 800,
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".activities-header", start: "top 85%" })
-        });
+    animateOnScroll(".activities-header", {
+        translateY: [20, 0],
+        duration: getOptimizedDuration(500),
+    });
 
-        animate(".activity-card", {
-            opacity: [0, 1],
-            translateY: [40, 0],
-            scale: [0.95, 1],
-            duration: 600,
-            delay: stagger(100),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".activity-card", start: "top 90%" })
-        });
-    }
+    // Reduced scale for better performance
+    animateOnScroll(".activity-card", {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: getOptimizedDuration(400),
+        delay: stagger(getOptimizedStagger(60)),
+    });
 
     /* ============================================================
          VISION & MISSION (PURPOSE)
       ============================================================ */
-    if (document.querySelector(".purpose-header")) {
-        animate(".purpose-header", {
-            opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 800,
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".purpose-header", start: "top 85%" })
-        });
+    animateOnScroll(".purpose-header", {
+        translateY: [20, 0],
+        duration: getOptimizedDuration(500),
+    });
 
-        animate(".purpose-card", {
-            opacity: [0, 1],
-            translateY: [40, 0],
-            duration: 800,
-            delay: stagger(200),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".purpose-card", start: "top 85%" })
-        });
+    animateOnScroll(".purpose-card", {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: getOptimizedDuration(500),
+        delay: stagger(getOptimizedStagger(120)),
+    });
 
-        animate(".purpose-detail-card", {
-            opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 600,
-            delay: stagger(100),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".purpose-detail-card", start: "top 90%" })
-        });
-    }
+    animateOnScroll(".purpose-detail-card", {
+        opacity: [0, 1],
+        translateY: [15, 0],
+        duration: getOptimizedDuration(400),
+        delay: stagger(getOptimizedStagger(60)),
+    });
 
     /* ============================================================
          CORE CURRICULUM
       ============================================================ */
-    if (document.querySelector(".curriculum-title")) {
-        animate(".curriculum-title", {
+    animateOnScroll(".curriculum-title", {
+        translateY: [20, 0],
+        duration: getOptimizedDuration(500),
+    });
+
+    animateOnScroll(".curriculum-subtitle", {
+        translateY: [15, 0],
+        duration: getOptimizedDuration(500),
+        delay: 100,
+    });
+
+    animateOnScroll(".curriculum-card", {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: getOptimizedDuration(400),
+        delay: stagger(getOptimizedStagger(60)),
+    });
+
+    /* ============================================================
+         CTA SECTION
+      ============================================================ */
+    if (document.querySelector("#cta")) {
+        animateOnScroll(".cta-content", {
             opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 800,
+            translateX: [-40, 0],
+            duration: getOptimizedDuration(600),
             easing: "ease-out",
-            autoplay: onScroll({ target: ".curriculum-title", start: "top 85%" })
         });
 
-        animate(".curriculum-subtitle", {
+        animateOnScroll(".cta-images", {
             opacity: [0, 1],
-            translateY: [20, 0],
-            duration: 1000,
+            translateX: [40, 0],
+            duration: getOptimizedDuration(600),
             delay: 200,
             easing: "ease-out",
-            autoplay: onScroll({ target: ".curriculum-subtitle", start: "top 85%" })
-        });
-
-        animate(".curriculum-card", {
-            opacity: [0, 1],
-            translateY: [40, 0],
-            duration: 800,
-            delay: stagger(100),
-            easing: "ease-out",
-            autoplay: onScroll({ target: ".curriculum-card", start: "top 90%" })
         });
     }
 };
 
-// Start
-document.addEventListener("DOMContentLoaded", initAnimations);
+// Initialize with performance check
+const init = () => {
+    // Add CSS variable for reduced motion
+    if (prefersReducedMotion) {
+        document.documentElement.style.setProperty("--animation-duration", "0s");
+    }
 
-// Livewire Compatibility
+    initAnimations();
+};
+
+// Start - use requestIdleCallback if available for better performance
+if ("requestIdleCallback" in window) {
+    requestIdleCallback(init);
+} else {
+    document.addEventListener("DOMContentLoaded", init);
+}
+
+// Livewire Compatibility - Optimized
 document.addEventListener("livewire:init", () => {
-    Livewire.hook("morph.updated", (el, component) => {
-        if (el.el && (el.el.querySelector(".team-card") || el.el.classList.contains("team-card"))) {
-            animate(".team-card", {
-                opacity: [1],
-                translateY: [0],
-                duration: 400,
-                easing: "ease-out",
+    Livewire.hook("morph.updated", (el) => {
+        if (prefersReducedMotion) return;
+
+        if (
+            el.el &&
+            (el.el.querySelector(".team-card") ||
+                el.el.classList.contains("team-card"))
+        ) {
+            // Simplified re-animation
+            requestAnimationFrame(() => {
+                animate(".team-card", {
+                    opacity: [0.8, 1],
+                    duration: getOptimizedDuration(300),
+                    easing: "ease-out",
+                });
             });
         }
     });

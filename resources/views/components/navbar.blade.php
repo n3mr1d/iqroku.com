@@ -1,24 +1,9 @@
-<flux:header sticky x-data="{
-    activeSection: 'hero',
-    spy() {
-        const sections = document.querySelectorAll('section[id], div[id]');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-                    this.activeSection = entry.target.id;
-                }
-            });
-        }, { threshold: [0.1, 0.3, 0.5], rootMargin: '-80px 0px -50% 0px' });
-
-        sections.forEach(el => observer.observe(el));
-    }
-}" x-init="spy()"
+<flux:header sticky
     class="z-[10000] w-full bg-white/70 backdrop-blur-xl border-b border-gray-100 px-6 transition-all duration-500">
 
     <div class="max-w-7xl mx-auto w-full flex items-center h-20">
         <!-- LEFT: LOGO -->
-        <a href="#hero" @click.prevent="window.scrollTo({top: 0, behavior: 'smooth'})"
-            class="flex items-center gap-3 group">
+        <a href="#hero" class="flex items-center gap-3 group">
             <div class="relative">
                 <div
                     class="absolute -inset-1  rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-300">
@@ -75,14 +60,14 @@
         <!-- CENTER: NAV MENU -->
         <div class="hidden lg:flex items-center p-1 bg-gray-50/50 rounded-2xl border border-gray-100">
             @php
-                $navItems = [
-                    ['id' => 'hero', 'label' => 'Home', 'icon' => 'fa-house'],
-                    ['id' => 'about', 'label' => 'About', 'icon' => 'fa-circle-info'],
-                    ['id' => 'team', 'label' => 'Team', 'icon' => 'fa-users'],
-                    ['id' => 'curriculum', 'label' => 'Program', 'icon' => 'fa-book-open'],
-                    ['id' => 'activities', 'label' => 'Activities', 'icon' => 'fa-bolt'],
-                    ['id' => 'rules', 'label' => 'Rules', 'icon' => 'fa-scale-balanced'],
-                ];
+            $navItems = [
+            ['id' => 'hero', 'label' => 'Home', 'icon' => 'fa-house'],
+            ['id' => 'about', 'label' => 'About', 'icon' => 'fa-circle-info'],
+            ['id' => 'team', 'label' => 'Team', 'icon' => 'fa-users'],
+            ['id' => 'curriculum', 'label' => 'Program', 'icon' => 'fa-book-open'],
+            ['id' => 'activities', 'label' => 'Activities', 'icon' => 'fa-bolt'],
+            ['id' => 'rules', 'label' => 'Rules', 'icon' => 'fa-scale-balanced'],
+            ];
             @endphp
 
 
@@ -91,17 +76,16 @@
                 <!-- NAV ITEMS -->
                 <div class="flex items-center gap-2">
                     @foreach ($navItems as $item)
-                        <a href="{{ route('home') . '#' . $item['id'] }}"
-                            x-bind:class="activeSection === '{{ $item['id'] }}'
+                    <a href="{{ route('home') . '#' . $item['id'] }}" x-bind:class="activeSection === '{{ $item['id'] }}'
                                 ?
                                 'bg-white shadow-sm text-indigo-600' :
                                 'text-gray-500 hover:text-gray-900'"
-                            class="flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 no-underline">
+                        class="flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 no-underline">
 
-                            <i class="fa-solid {{ $item['icon'] }} text-sm"></i>
-                            <span>{{ $item['label'] }}</span>
+                        <i class="fa-solid {{ $item['icon'] }} text-sm"></i>
+                        <span>{{ $item['label'] }}</span>
 
-                        </a>
+                    </a>
                     @endforeach
                 </div>
             </div>
@@ -174,10 +158,10 @@
 
         <flux:navlist variant="outline" class="space-y-2">
             @foreach ($navItems as $item)
-                <flux:navlist.item href="{{ route('home') . '#' . $item['id'] }}">
-                    <i class="fa-solid {{ $item['icon'] }} text-sm"></i>
-                    {{ $item['label'] }}
-                </flux:navlist.item>
+            <flux:navlist.item href="{{ route('home') . '#' . $item['id'] }}">
+                <i class="fa-solid {{ $item['icon'] }} text-sm"></i>
+                {{ $item['label'] }}
+            </flux:navlist.item>
             @endforeach
         </flux:navlist>
 
@@ -191,9 +175,3 @@
         </div>
     </flux:sidebar>
 </flux:header>
-
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
-</style>

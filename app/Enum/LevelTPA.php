@@ -4,13 +4,12 @@ namespace App\Enum;
 
 enum LevelTPA: string
 {
-    case IQRO1 = 'iqro 1';
-    case IQRO2 = 'iqro 2';
-    case IQRO3 = 'iqro 3';
-    case IQRO4 = 'iqro 4';
-    case IQRO5 = 'iqro 5';
-    case IQRO6 = 'iqro 6';
-
+    case IQRO1 = 'iqro_1';
+    case IQRO2 = 'iqro_2';
+    case IQRO3 = 'iqro_3';
+    case IQRO4 = 'iqro_4';
+    case IQRO5 = 'iqro_5';
+    case IQRO6 = 'iqro_6';
     case TAHSIN = 'tahsin';
 
 

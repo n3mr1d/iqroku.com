@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -18,11 +17,14 @@ return new class extends Migration
             $table->string('whatsapp');
             $table->string('name');
             $table->string('gender');
+            $table->string('email');
+            $table->foreignId('user_id')->nullable()->index();
             $table->date('datebirth');
             $table->boolean('tpalama')->default(false);
-            $table->string('leveltpa');
+            $table->string('leveltpa')->nullable();
+
             $table->boolean('pendampingan')->default(false);
-            $table->string('saran');
+            $table->string('saran')->default("we dont have any saran");
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('register_tpas');
+        Schema::dropIfExists('tparegisters');
     }
 };

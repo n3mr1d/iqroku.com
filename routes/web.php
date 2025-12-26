@@ -1,17 +1,34 @@
 <?php
 
-use App\Livewire\Auth\Login;
+use App\Models\User;
+use Laravel\Fortify\Features;
 use App\Livewire\Auth\Register;
+use App\Livewire\Settings\Profile;
+use App\Livewire\Settings\Password;
+use App\Livewire\Settings\TwoFactor;
+use App\Livewire\Settings\Appearance;
+use App\Mail\WelcomeMail;
+use App\Models\RegisterTpa;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::middleware('guest')->group(function () {
-    Route::get('/login', Login::class)->name('login');
-    Route::get('/register', Register::class)->name('register');
+Route::get('/register', Register::class)->name('register');
+
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::get('preview', function () {
+    $user = User::find(1);
+    $registration = RegisterTpa::find(1);
+    $plaintext = " hallo world";
+    return new WelcomeMail($user, $registration, $plaintext);
+
 });
 
-
-require_once('dashboard.php');
+require_once 'admin.php';
+require_once 'teacher.php';
+require_once 'student.php';
