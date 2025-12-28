@@ -1,0 +1,427 @@
+@import "tailwindcss";
+
+/* =========================
+   Vendor styles
+========================= */
+@import "../../vendor/livewire/flux/dist/flux.css";
+@import "../../vendor/wireui/wireui/ts/global.css";
+
+/* =========================
+   Tailwind source scanning
+========================= */
+@source "../views/**/*.blade.php";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../vendor/livewire/flux/stubs/**/*.blade.php";
+@source "../../vendor/livewire/flux-pro/stubs/**/*.blade.php";
+@source "../../vendor/wireui/wireui/**/*.blade.php";
+
+/* =========================
+   Dark mode variant
+========================= */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================
+   Theme variables
+========================= */
+@theme {
+    /* Font */
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+
+    /* Zinc palette */
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    /* Accent */
+    --color-accent: var(--color-zinc-800);
+    --color-accent-content: var(--color-zinc-800);
+    --color-accent-foreground: white;
+
+    /* Border schema (LIGHT MODE) */
+    --border-soft: color-mix(in oklab, var(--color-zinc-300) 60%, transparent);
+    --border-default: color-mix(in oklab,
+            var(--color-zinc-300) 85%,
+            transparent);
+    --border-strong: var(--color-zinc-400);
+
+    --border-hover: var(--color-zinc-400);
+    --border-focus: var(--color-accent);
+}
+
+/* =========================
+   Dark mode overrides
+========================= */
+@layer theme {
+    .dark {
+        --color-accent: white;
+        --color-accent-content: white;
+        --color-accent-foreground: var(--color-zinc-800);
+
+        --border-soft: color-mix(in oklab,
+                var(--color-zinc-700) 60%,
+                transparent);
+        --border-default: color-mix(in oklab,
+                var(--color-zinc-700) 85%,
+                transparent);
+        --border-strong: var(--color-zinc-600);
+
+        --border-hover: var(--color-zinc-500);
+        --border-focus: var(--color-accent);
+    }
+}
+
+/* =========================
+   Base layer
+========================= */
+@layer base {
+
+    *,
+    ::before,
+    ::after,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--border-default, currentColor);
+    }
+}
+
+/* =========================
+   Border utilities (MODERN)
+========================= */
+@layer utilities {
+    .border-soft {
+        border: 1px solid var(--border-soft);
+    }
+
+    .border-default {
+        border: 1px solid var(--border-default);
+    }
+
+    .border-strong {
+        border: 1px solid var(--border-strong);
+    }
+
+    .border-hoverable {
+        transition: border-color 0.2s ease;
+    }
+
+    .border-hoverable:hover {
+        border-color: var(--border-hover);
+    }
+
+    .border-focus-ring {
+        outline: none;
+        border-color: var(--border-focus);
+        box-shadow: 0 0 0 2px color-mix(in oklab, var(--border-focus) 30%, transparent);
+    }
+}
+
+/* =========================
+   Flux helpers
+========================= */
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+@import "tailwindcss";
+
+/* =========================
+   Vendor styles
+========================= */
+@import "../../vendor/livewire/flux/dist/flux.css";
+@import "../../vendor/wireui/wireui/ts/global.css";
+
+/* =========================
+   Tailwind source scanning
+========================= */
+@source "../views/**/*.blade.php";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../vendor/livewire/flux/stubs/**/*.blade.php";
+@source "../../vendor/livewire/flux-pro/stubs/**/*.blade.php";
+@source "../../vendor/wireui/wireui/**/*.blade.php";
+
+/* =========================
+   Dark mode variant
+========================= */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================
+   Theme variables
+========================= */
+@theme {
+    /* Font */
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+
+    /* Zinc palette */
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    /* Accent */
+    --color-accent: var(--color-zinc-800);
+    --color-accent-content: var(--color-zinc-800);
+    --color-accent-foreground: white;
+
+    /* Border schema (LIGHT MODE) */
+    --border-soft: color-mix(in oklab, var(--color-zinc-300) 60%, transparent);
+    --border-default: color-mix(in oklab,
+            var(--color-zinc-300) 85%,
+            transparent);
+    --border-strong: var(--color-zinc-400);
+
+    --border-hover: var(--color-zinc-400);
+    --border-focus: var(--color-accent);
+}
+
+/* =========================
+   Dark mode overrides
+========================= */
+@layer theme {
+    .dark {
+        --color-accent: white;
+        --color-accent-content: white;
+        --color-accent-foreground: var(--color-zinc-800);
+
+        --border-soft: color-mix(in oklab,
+                var(--color-zinc-700) 60%,
+                transparent);
+        --border-default: color-mix(in oklab,
+                var(--color-zinc-700) 85%,
+                transparent);
+        --border-strong: var(--color-zinc-600);
+
+        --border-hover: var(--color-zinc-500);
+        --border-focus: var(--color-accent);
+    }
+}
+
+/* =========================
+   Base layer
+========================= */
+@layer base {
+
+    *,
+    ::before,
+    ::after,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--border-default, currentColor);
+    }
+
+    body {
+        direction: ltr;
+        /* atau rtl */
+    }
+}
+
+.timeline-header {
+    background: linear-gradient(135deg, #14b8a6 0%, #0891b2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(20, 184, 166, 0.1);
+    letter-spacing: 0.05em;
+}
+
+.timeline-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.timeline-circle:hover {
+    transform: scale(1.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-item {
+    flex-shrink: 0;
+}
+
+/* Desktop animations */
+.timeline-label {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.timeline-label:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.timeline-label:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.timeline-label:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile Timeline */
+.timeline-mobile-item {
+    opacity: 0;
+    animation: slideInFromLeft 0.6s ease forwards;
+}
+
+.timeline-mobile-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.timeline-mobile-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.timeline-mobile-item:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+.timeline-mobile-item:nth-child(7) {
+    animation-delay: 0.4s;
+}
+
+.timeline-mobile-item:nth-child(9) {
+    animation-delay: 0.5s;
+}
+
+.timeline-mobile-item:nth-child(11) {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.connecting-line {
+    background: linear-gradient(to bottom, var(--from-color), var(--to-color));
+}
+
+@media (max-width: 1024px) {
+    .timeline-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .timeline-circle svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline-circle {
+        width: 64px;
+        height: 64px;
+    }
+
+    .timeline-circle svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* =========================
+   Border utilities (MODERN)
+========================= */
+@layer utilities {
+    .border-soft {
+        border: 1px solid var(--border-soft);
+    }
+
+    .border-default {
+        border: 1px solid var(--border-default);
+    }
+
+    .border-strong {
+        border: 1px solid var(--border-strong);
+    }
+
+    .border-hoverable {
+        transition: border-color 0.2s ease;
+    }
+
+    .border-hoverable:hover {
+        border-color: var(--border-hover);
+    }
+
+    .border-focus-ring {
+        outline: none;
+        border-color: var(--border-focus);
+        box-shadow: 0 0 0 2px color-mix(in oklab, var(--border-focus) 30%, transparent);
+    }
+}
+
+/* =========================
+   Flux helpers
+========================= */
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
