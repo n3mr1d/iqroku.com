@@ -11,11 +11,12 @@ enum LevelTPA: string
     case IQRO5 = 'iqro_5';
     case IQRO6 = 'iqro_6';
     case TAHSIN = 'tahsin';
-
+    case BELUM = 'belum';
 
     public function label()
     {
         return match ($this) {
+            self::BELUM => 'Belum',
             self::IQRO1 => 'Iqro 1',
             self::IQRO2 => 'Iqro 2',
             self::IQRO3 => 'Iqro 3',
@@ -26,4 +27,3 @@ enum LevelTPA: string
         };
     }
 }
-

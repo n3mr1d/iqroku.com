@@ -18,7 +18,7 @@ class KurikulumInti extends Component
 
     private function kurikulum(): array
     {
-        $cur= [
+        $cur = [
             [
                 'id' => 1,
                 'text' => 'text-blue-500',
@@ -44,7 +44,7 @@ class KurikulumInti extends Component
                 'text' => 'text-purple-500',
                 'icon' => 'fa-solid fa-mosque',
                 'title' => 'ISLAMIC BASICS',
-                'description' => 'Fundamental Islamic knowledge covering manners (Adab), basic jurisprudence (Fiqh), and pillars of faith',
+                'description' => 'Fundamental Islamic knowledge including etiquette (Adab), basic jurisprudence (Fiqh), and pillars of faith',
                 'color' => 'from-purple-50 to-purple-100',
                 'border' => 'border-purple-200',
                 'hover' => 'hover:border-purple-400'

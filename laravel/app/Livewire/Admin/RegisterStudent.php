@@ -4,49 +4,75 @@ namespace App\Livewire\Admin;
 
 use App\Enum\Gander;
 use App\Enum\LevelTPA;
-use Flux\Flux;
-use Livewire\Component;
-use App\Models\RegisterTpa;
 use App\Enum\StatusRegister;
+use App\Models\RegisterTpa;
+use Flux\Flux;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Enum;
 use Livewire\Attributes\Title;
-use Livewire\WithPagination;
+use Livewire\Component;
 use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 use WireUi\Traits\WireUiActions;
 
 class RegisterStudent extends Component
 {
-    use WithPagination, WithoutUrlPagination, WireUiActions;
+    use WireUiActions, WithoutUrlPagination, WithPagination;
 
     #[Title('Register Student')]
+    public $statusSelect;
     public $selectedStudent = null;
+
     public $deleteId = null;
+
     public $viewSelected = null;
+
+    public $last_editor_name = null;
 
     // Form properties
     public $curentid;
+
     public $name;
+
     public $name_father;
+
     public $name_mother;
+
     public $whatsapp;
+
     public $email;
+
     public $gender;
+
     public $datebirth;
+
     public $tpalama = false;
+
     public $leveltpa;
+
     public $pendampingan = false;
+
     public $saran;
+
     public $admin_notes;
+
     public $status;
 
+    public $group;
+
     public string $search = '';
+
     public int $countRegister;
+
     public int $countWaiting;
+
     public int $countRejected;
+
     public int $countApproved;
 
     public function mount()
     {
+        $this->statusSelect = StatusRegister::cases();
         $this->updateCounts();
     }
 
@@ -61,6 +87,8 @@ class RegisterStudent extends Component
     public function view($id)
     {
         $this->viewSelected = RegisterTpa::findOrFail($id);
+        $this->last_editor_name = optional($this->viewSelected->approver)->name ?? 'Not Edited Yet';
+        $this->group = $this->viewSelected->group ?? 'Anonymous Group';
         Flux::modal('view-student')->show();
     }
 
@@ -69,6 +97,8 @@ class RegisterStudent extends Component
         $this->selectedStudent = RegisterTpa::findOrFail($id);
         $this->curentid = $id;
 
+        $this->last_editor_name = optional($this->selectedStudent->approver)->name ?? 'Not Edited Yet';
+        $this->group = $this->selectedStudent->group;
         $this->name = $this->selectedStudent->name;
         $this->name_father = $this->selectedStudent->name_father;
         $this->name_mother = $this->selectedStudent->name_mother;
@@ -77,7 +107,7 @@ class RegisterStudent extends Component
         $this->gender = $this->selectedStudent->gender->value;
         $this->datebirth = $this->selectedStudent->datebirth->format('Y-m-d');
         $this->tpalama = $this->selectedStudent->tpalama;
-        $this->leveltpa = $this->selectedStudent->leveltpa->value;
+        $this->leveltpa = $this->selectedStudent->leveltpa->value ?? 'belum';
         $this->pendampingan = $this->selectedStudent->pendampingan;
         $this->saran = $this->selectedStudent->saran;
         $this->admin_notes = $this->selectedStudent->admin_notes;
@@ -85,6 +115,7 @@ class RegisterStudent extends Component
 
         Flux::modal('edit-student')->show();
     }
+
     public function updateStudent()
     {
         $this->validate([
@@ -97,6 +128,7 @@ class RegisterStudent extends Component
             'datebirth' => 'required|date',
             'status' => ['required', new Enum(StatusRegister::class)],
             'leveltpa' => ['required', new Enum(LevelTPA::class)],
+            'group' => 'nullable|string|max:255',
         ]);
 
         $student = RegisterTpa::findOrFail($this->curentid);
@@ -110,11 +142,14 @@ class RegisterStudent extends Component
             'gender' => $this->gender,
             'datebirth' => $this->datebirth,
             'tpalama' => $this->tpalama,
-            'leveltpa' => $this->leveltpa,
+            'approved_by' => Auth::id(),
+            'approved_at' => now(),
+            'leveltpa' => $this->leveltpa ?? null,
             'pendampingan' => $this->pendampingan,
             'saran' => $this->saran,
             'admin_notes' => $this->admin_notes,
             'status' => $this->status,
+            'group' => $this->group,
         ]);
 
         $this->updateCounts();
@@ -146,7 +181,9 @@ class RegisterStudent extends Component
             'admin_notes',
             'status',
             'curentid',
-            'selectedStudent'
+            'selectedStudent',
+            'last_editor_name',
+            'group',
         ]);
     }
 
@@ -154,6 +191,7 @@ class RegisterStudent extends Component
     {
         $this->deleteId = $id;
         $this->selectedStudent = RegisterTpa::findOrFail($id);
+        Flux::modal('delete-modal')->show();
     }
 
     public function deleteRegistration()
@@ -178,8 +216,12 @@ class RegisterStudent extends Component
 
     public function render()
     {
-        $register = RegisterTpa::where('name', 'like', "%{$this->search}%")
-            ->orderBy('created_at', 'desc')
+        $register = RegisterTpa::where(function ($q) {
+            $q->where('name', 'like', "%{$this->search}%")
+                ->orWhere('whatsapp', 'like', "%{$this->search}%")
+                ->orWhere('name_father', 'like', "%{$this->search}%")
+                ->orWhere('name_mother', 'like', "%{$this->search}%");
+        })->orderBy('created_at', 'desc')
             ->paginate(10);
 
         return view('livewire.admin.register-student', compact('register'));

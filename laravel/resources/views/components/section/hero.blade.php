@@ -30,19 +30,20 @@
 
                         <h1
                             class="hero-element opacity-0 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
-                            Welcome to our TPA Family!
+                            Welcome to Our TPA Family!
                         </h1>
 
                         <div
                             class="hero-element opacity-0 space-y-4 md:space-y-6 text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                             <p>
-                                We are delighted to warmly welcome all parents to <strong
-                                    class="text-gray-900 dark:text-white">TPA KMMI Abu Dhabi</strong>.
+                                We warmly welcome all parents to <strong class="text-gray-900 dark:text-white">TPA KMMI
+                                    Abu Dhabi</strong>.
                                 Thank you for trusting us with the education and development of your children.
                             </p>
 
                             <p class="font-medium text-blue-600 dark:text-blue-400 italic">
-                                "Let us go through this academic year with enthusiasm, prayers, and sincere hearts."
+                                "Let us journey through this academic year together with enthusiasm, prayers, and
+                                sincere hearts."
                             </p>
                         </div>
 

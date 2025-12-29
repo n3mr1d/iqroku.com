@@ -21,7 +21,7 @@
             <div
                 class="flex items-center border p-4 rounded-xl justify-between bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
                 <div>
-                    <p class="text-sm font-medium text-zinc-500">Waiting</p>
+                    <p class="text-sm font-medium text-zinc-500">Pending Payment</p>
                     <p class="text-2xl font-bold text-zinc-800 dark:text-white">{{ $countWaiting }}</p>
                 </div>
                 <div class="p-3 bg-yellow-100 dark:bg-yellow-500/20 rounded-full">
@@ -32,7 +32,7 @@
             <div
                 class="flex items-center border p-4 rounded-xl justify-between bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
                 <div>
-                    <p class="text-sm font-medium text-zinc-500">Rejected</p>
+                    <p class="text-sm font-medium text-zinc-500">Not Active</p>
                     <p class="text-2xl font-bold text-zinc-800 dark:text-white">{{ $countRejected }}</p>
                 </div>
                 <div class="p-3 bg-red-100 dark:bg-red-500/20 rounded-full">
@@ -43,7 +43,7 @@
             <div
                 class="flex items-center border p-4 rounded-xl justify-between bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
                 <div>
-                    <p class="text-sm font-medium text-zinc-500">Approved</p>
+                    <p class="text-sm font-medium text-zinc-500">Active</p>
                     <p class="text-2xl font-bold text-zinc-800 dark:text-white">{{ $countApproved }}</p>
                 </div>
                 <div class="p-3 bg-green-100 dark:bg-green-500/20 rounded-full">
@@ -54,7 +54,7 @@
 
         <div class="mb-6">
             <flux:input icon="magnifying-glass" type="text" wire:model.live.bounce.300ms="search"
-                placeholder="Search Student Name..." />
+                placeholder="Search Student By Name, Whatsapp, Father's Name, Mother's Name..." />
         </div>
 
         <div class="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
@@ -250,13 +250,27 @@
                                             Notes</flux:text>
                                         <flux:text class="mt-1">{{ $viewSelected->admin_notes }}</flux:text>
                                     </div>
+                                @else
+                                    <div>
+                                        <flux:text size="sm" class="text-zinc-500 uppercase font-semibold">Admin
+                                            Notes</flux:text>
+                                        <flux:text class="mt-1">No notes provided.</flux:text>
+                                    </div>
                                 @endif
                             </div>
                         </div>
                     </div>
 
                     <div class="flex gap-2 pt-4 border-t">
-                        <flux:text>{{ $viewSelected->approved_by ?? 'Not Approved' }}</flux:text>
+                        <div class="flex flex-col">
+                            <flux:text size="sm">Last Edited By: <span
+                                    class="font-medium text-zinc-800 dark:text-zinc-200">{{ $last_editor_name ?? 'Not Edited' }}</span>
+                            </flux:text>
+                            <flux:text size="sm">Group: <span
+                                    class="font-medium text-zinc-800 dark:text-zinc-200">{{ $group ?? 'Anonymous Group' }}</span>
+                            </flux:text>
+                        </div>
+
                         <flux:spacer />
                         <flux:modal.close>
                             <flux:button variant="ghost">Close Profile</flux:button>
@@ -307,9 +321,10 @@
                         <flux:field>
                             <flux:label>Registration Status</flux:label>
                             <flux:select wire:model="status">
-                                <option value="waiting">Waiting</option>
-                                <option value="approved">Approved</option>
-                                <option value="rejected">Rejected</option>
+                                @foreach ($statusSelect as $status)
+                                    <option value="{{ $status->value }}">{{ $status->label() }}
+                                    </option>
+                                @endforeach
                             </flux:select>
                             <flux:error name="status" />
                         </flux:field>
@@ -348,10 +363,15 @@
                             <flux:error name="leveltpa" />
                         </flux:field>
 
-                        <div class="flex flex-col gap-4 justify-center">
-                            <flux:checkbox wire:model="tpalama" label="Previously studied at another TPA" />
-                            <flux:checkbox wire:model="pendampingan"
-                                label="Requires special assistance/supervision" />
+                        <flux:field>
+                            <flux:label>Group (Optional)</flux:label>
+                            <flux:input wire:model="group" placeholder="e.g. Group A, Class 1" />
+                            <flux:error name="group" />
+                        </flux:field>
+
+                        <div class="flex flex-col gap-4 justify-center md:col-span-1">
+                            <flux:checkbox wire:model="tpalama" label="Previously studied at TPA" />
+                            <flux:checkbox wire:model="pendampingan" label="Requires special assistance" />
                         </div>
 
                         <flux:field class="md:col-span-2">
@@ -363,6 +383,11 @@
                     </div>
 
                     <div class="flex justify-end gap-2 pt-4 border-t">
+                        <div class="flex flex-col">
+                            <flux:text size="xs" class="text-zinc-400">Last Edited By:
+                                {{ $last_editor_name ?? 'Not Edited' }}</flux:text>
+                        </div>
+                        <flux:spacer />
                         <flux:modal.close>
                             <flux:button variant="ghost">Cancel Changes</flux:button>
                         </flux:modal.close>

@@ -3,19 +3,20 @@
 namespace App\Models;
 
 use App\Enum\Gander;
-use App\Models\User;
 use App\Enum\LevelTPA;
 use App\Enum\StatusRegister;
 use App\Events\RegisterNewTpa;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class RegisterTpa extends Model
 {
     use HasFactory;
+
     protected $table = 'tparegisters';
+
     protected $factory = 'RegisterTpaFactory';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -38,10 +39,13 @@ class RegisterTpa extends Model
         'admin_notes',
         'approved_at',
         'approved_by',
+        'group',
     ];
+
     protected $dispatchesEvents = [
         'created' => RegisterNewTpa::class,
     ];
+
     protected $casts = [
         'datebirth' => 'date',
         'tpalama' => 'boolean',
@@ -51,7 +55,6 @@ class RegisterTpa extends Model
         'pendampingan' => 'boolean',
         'approved_at' => 'datetime',
     ];
-
 
     public function user()
     {

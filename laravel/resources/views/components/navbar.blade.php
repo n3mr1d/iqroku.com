@@ -33,7 +33,7 @@
 
     <div class="max-w-7xl mx-auto w-full flex items-center h-20">
         <!-- LEFT: LOGO -->
-        <a href="#hero" class="flex items-center gap-3 group">
+        <a href="{{ route('home') . '#hero' }}" class="flex items-center gap-3 group">
             <div class="relative">
                 <div
                     class="absolute -inset-1  rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-300">
@@ -142,7 +142,7 @@
     <flux:navlist variant="outline" class="space-y-2">
         @foreach ($navItems as $item)
             @php $itemId = $item['id']; @endphp
-            <flux:navlist.item @click="closeSidebar()"
+            <flux:navlist.item
                 x-bind:class="activeSection === '{{ $itemId }}' ? 'bg-indigo-50 !text-indigo-600 font-medium' : ''"
                 href="{{ route('home') . '#' . $itemId }}">
                 <i class="fa-solid {{ $item['icon'] }} text-sm"></i>

@@ -40,7 +40,7 @@
                                         class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-3 shadow-md">
                                         Sep 2025 – Jun 2026
                                     </span>
-                                    <h3 class="text-base font-bold text-slate-800 mb-2">TPA Runs Consistently</h3>
+                                    <h3 class="text-base font-bold text-slate-800 mb-2">Consistent Program Delivery</h3>
                                     <p class="text-sm text-slate-600 leading-relaxed">The program is conducted regularly
                                         according to the academic calendar.</p>
                                 </div>
@@ -72,10 +72,10 @@
                                         Annual Target
                                     </span>
                                     <h3 class="text-base font-bold text-slate-800 mb-2">
-                                        90% of Students Advance in Iqra’
+                                        90% Student Progression in Iqra' Levels
                                     </h3>
                                     <p class="text-sm text-slate-600 leading-relaxed">
-                                        At least one level improvement within one year.
+                                        Minimum advancement of one level within one year
                                     </p>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                         Semester Evaluation
                                     </span>
                                     <h3 class="text-base font-bold text-slate-800 mb-2">
-                                        Minimum Attendance of 75%
+                                        75% Minimum Attendance Rate
                                     </h3>
                                     <p class="text-sm text-slate-600 leading-relaxed">
                                         Consistent attendance each semester.
@@ -138,10 +138,10 @@
                                         Monitoring
                                     </span>
                                     <h3 class="text-base font-bold text-slate-800 mb-2">
-                                        Parental Involvement
+                                        Active Parental Engagement
                                     </h3>
                                     <p class="text-sm text-slate-600 leading-relaxed">
-                                        60% of parents actively assist with practice at home.
+                                        60% of parents actively support home practice.
                                     </p>
                                 </div>
                             </div>

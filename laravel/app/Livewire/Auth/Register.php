@@ -4,21 +4,20 @@ namespace App\Livewire\Auth;
 
 use App\Enum\Gander;
 use App\Enum\LevelTPA;
-use Livewire\Component;
-use App\Events\RegisterNewTpa;
 use App\Models\RegisterTpa;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Layout;
-use WireUi\Traits\WireUiActions;
-use Livewire\Attributes\Validate;
 use Illuminate\Validation\Rules\Enum;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
+use WireUi\Traits\WireUiActions;
 
 class Register extends Component
 {
     use WireUiActions;
+
     #[Title('Register')]
     #[Layout('components.layouts.auth')]
-
     public $step = 1;
 
     // Step 1: Child's Data
@@ -43,15 +42,20 @@ class Register extends Component
 
     // Step 3: Additional Info
     public bool $tpalama = false;
+
     #[Validate('required|email')]
-    public string $email = "";
+    public string $email = '';
 
     public bool $pendampingan = false;
+
     public array $levelTpaOptions = []; // list enum
+
     public $leveltpa = '';      // nilai terpilih
 
     public $saran = '';
+
     public array $genderoption = [];
+
     public function mount()
     {
         $this->levelTpaOptions = LevelTPA::cases();
@@ -83,10 +87,11 @@ class Register extends Component
                 'name_father' => 'required|min:3',
                 'name_mother' => 'required|min:3',
                 'whatsapp' => 'required|numeric|min_digits:10',
-                'email' => 'required|email'
+                'email' => 'required|email',
             ]);
         }
     }
+
     private function infoSuccess(): void
     {
 
@@ -100,9 +105,8 @@ class Register extends Component
 
         ]);
 
-
-
     }
+
     public function register()
     {
         $this->validate(
@@ -121,7 +125,7 @@ class Register extends Component
         if ($this->tpalama == false) {
             $this->leveltpa = null;
         }
-        ;
+
         RegisterTpa::create([
             'name' => $this->name,
             'email' => $this->email,
@@ -131,12 +135,11 @@ class Register extends Component
             'name_mother' => $this->name_mother,
             'whatsapp' => $this->whatsapp,
             'tpalama' => $this->tpalama ?? false,
-            'leveltpa' => $this->leveltpa ?? null,
+            'leveltpa' => $this->leveltpa ?? 'belum',
             'pendampingan' => $this->pendampingan ?? false,
             'saran' => $this->saran ?? null,
         ]);
         $this->infoSuccess();
-
 
         session()->flash('status', 'User registered successfully. check you email now !!');
 

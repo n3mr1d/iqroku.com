@@ -39,8 +39,8 @@
                         </div>
                         <h3 class="activity-title text-xl font-bold text-gray-900 mb-3">Ramadan Intensive Program</h3>
                         <p class="activity-description text-gray-600 leading-relaxed">
-                            An intensive program conducted during the month of Ramadan to deepen students’ Islamic
-                            knowledge and understanding.
+                            An intensive program during Ramadan to deepen students' Islamic knowledge and spiritual
+                            understanding
                         </p>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <h3 class="activity-title text-xl font-bold text-gray-900 mb-3">Competitive & Creative
                             Activities</h3>
                         <p class="activity-description text-gray-600 leading-relaxed">
-                            Competitive and creative activities to hone students' talents and foster a spirit of healthy
+                            Competitive and creative activities that develop students' talents and encourage healthy
                             competition.
                         </p>
                     </div>
@@ -81,8 +81,7 @@
                         <h3 class="activity-title text-xl font-bold text-gray-900 mb-3">Documentation & Social Media
                         </h3>
                         <p class="activity-description text-gray-600 leading-relaxed">
-                            Capturing milestones and creating educational digital content to inspire others in the
-                            community.
+                            Documenting milestones and creating educational content to inspire the broader community.
                         </p>
                     </div>
                 </div>
@@ -103,9 +102,7 @@
                         </div>
                         <h3 class="activity-title text-xl font-bold text-gray-900 mb-3">Mid-year Evaluation</h3>
                         <p class="activity-description text-gray-600 leading-relaxed">
-                            Comprehensive periodic assessments to monitor student progress and ensure learning
-                            objectives
-                            are met.
+                            Comprehensive assessments to track student progress and ensure learning goals are achieved.s
                         </p>
                     </div>
                 </div>
@@ -125,8 +122,8 @@
                         <h3 class="activity-title text-xl font-bold text-gray-900 mb-3">Year-end Promotion Ceremony
                         </h3>
                         <p class="activity-description text-gray-600 leading-relaxed">
-                            Celebrating achievements with a formal graduation ceremony and Iqra grade promotion
-                            announcements.
+                            Celebrating achievements through a formal ceremony with Iqra' level advancement
+                            announcements
                         </p>
                     </div>
                 </div>

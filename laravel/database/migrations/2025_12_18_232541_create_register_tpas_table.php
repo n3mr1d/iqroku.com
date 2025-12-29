@@ -25,10 +25,10 @@ return new class extends Migration {
             $table->boolean('pendampingan')->default(false);
             $table->string('saran')->default("we dont have any suggestions");
             // Status Management
-            $table->enum('status', ['waiting', 'approved', 'rejected'])->default('waiting');
+            $table->string('status')->default('pending_payment');
             $table->timestamp('approved_at')->nullable();
             $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
-
+            $table->string('admin_notes')->nullable();
             $table->timestamps();
         });
     }

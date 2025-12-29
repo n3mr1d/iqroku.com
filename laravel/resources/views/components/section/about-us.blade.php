@@ -18,7 +18,7 @@
                 <!-- Left Content -->
                 <div class="about-content space-y-6 opacity-0" itemprop="description">
                     <h2 class="about-text text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                        TPA Abu Dhabi is a weekly Qur'an learning space for Indonesian children living in Abu Dhabi.
+                        TPA Abu Dhabi is a weekly Qur'an learning center for Indonesian children living in Abu Dhabi.
                     </h2>
 
                     <div class="space-y-4">
@@ -28,17 +28,18 @@
 
                         <ul class="list-disc list-inside text-lg text-gray-600 leading-relaxed space-y-2">
                             <li>
-                                Reading the Qur'an using the <strong>Iqra' method</strong> (Levels 1–6) and the Qur'an
+                                <span class="font-semibold">Qur'an</span> reading instruction using the <span
+                                    class="font-semibold">Iqra</span>
                             </li>
                             <li>
                                 Memorization of short surahs and daily supplications (du'a)
                             </li>
                             <li>
-                                Islamic stories and the practice of basic Islamic manners (adab)
+                                Islamic stories and practicing basic Islamic etiquette (adab)
                             </li>
                             <li>
-                                Building a strong community of children, teachers, and parents in a fun and nurturing
-                                Islamic environment
+                                Fostering a vibrant community of children, teachers, and parents in an engaging and
+                                nurturing Islamic environment
                             </li>
                         </ul>
                     </div>
@@ -139,8 +140,8 @@
                                     </h3>
                                     <p class="text-base md:text-lg text-gray-700 leading-relaxed"
                                         itemprop="description">
-                                        To nurture a Qur'anic generation of Indonesian children in Abu Dhabi who are
-                                        rooted in Islamic values and excellence.
+                                        To nurture Indonesian children in Abu Dhabi into a Qur'anic generation rooted in
+                                        Islamic values and excellence.
                                     </p>
                                 </div>
                             </div>
@@ -173,8 +174,8 @@
                                     </h3>
                                     <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-4"
                                         itemprop="description">
-                                        Empowering children through comprehensive Islamic education and values in four
-                                        key pillars:
+                                        Empowering children through comprehensive Islamic education across four key
+                                        pillars:
                                     </p>
                                 </div>
                             </div>
@@ -202,7 +203,8 @@
                             Qur'an Literacy
                         </h4>
                         <p class="text-gray-600 leading-relaxed text-sm" itemprop="description">
-                            Develop reading, understanding, and practicing the Qur'an correctly using proven methods
+                            Develop proficiency in reading, understanding, and applying the Qur'an correctly using
+                            proven methods
                         </p>
                     </article>
 
@@ -226,7 +228,7 @@
                             Islamic Character
                         </h4>
                         <p class="text-gray-600 leading-relaxed text-sm" itemprop="description">
-                            Instill Islamic values, noble character, and proper adab in daily life
+                            Instill Islamic values, noble character, and proper etiquette (adab) in daily life
                         </p>
                     </article>
 
@@ -250,7 +252,7 @@
                             Joyful Learning
                         </h4>
                         <p class="text-gray-600 leading-relaxed text-sm" itemprop="description">
-                            Create interactive and engaging educational experiences that inspire love for learning
+                            Create interactive and engaging learning experiences that inspire a love for knowledge
                         </p>
                     </article>
 
@@ -273,7 +275,7 @@
                             Unified Community
                         </h4>
                         <p class="text-gray-600 leading-relaxed text-sm" itemprop="description">
-                            Connect children, teachers, and parents in collaborative growth and mutual support
+                            Unite children, teachers, and parents in collaborative growth and mutual support
                         </p>
                     </article>
                 </div>

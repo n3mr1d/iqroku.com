@@ -53,7 +53,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'role' => Role::class
         ];
     }
-
+    public function isStudent(): bool
+    {
+        return $this->role === Role::STUDENT;
+    }
     public function tparegister()
     {
         return $this->hasOne(RegisterTpa::class);

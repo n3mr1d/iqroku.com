@@ -28,7 +28,7 @@ class registertpaFactory extends Factory
             'leveltpa' => fake()->randomElement(['iqro_1', 'iqro_2']),
             'pendampingan' => fake()->boolean(),
             'saran' => fake()->sentence(),
-            'status' => 'waiting',
+            'status' => 'pending_payment',
             'admin_notes' => null,
             'approved_at' => null,
             'approved_by' => null,

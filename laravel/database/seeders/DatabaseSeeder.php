@@ -15,12 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        RegisterTpa::factory(100)->create();
-        // User::factory()->create([
-        //     'name' => ' Gabriel F.Harris',
-        //     'email' => 'brainfreeze289@gmail.com',
-        //     'role' => 'admin',
-        //     'password' => 'iqroku2026',
-        // ]);
+        // RegisterTpa::factory(100)->create();
+        User::factory()->create([
+            'name' => ' studentdummy',
+            'email' => 'studentdummy@gmail.com',
+            'role' => 'student',
+            'password' => 'iqroku2026',
+        ]);
     }
 }
